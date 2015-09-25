@@ -1,0 +1,9 @@
+/config/
+/config/*
+/downloads/*
+/downloads/
+*.txt
+.idea/*
+.idea/
+usr_config.txt
+app_config.txt
