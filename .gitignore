@@ -7,3 +7,4 @@
 .idea/
 usr_config.txt
 app_config.txt
+*.pyc
