@@ -21,7 +21,7 @@ import os
 
 if not api.chechConnection():
     print("Error: No access to the Internet")
-    os._exit(0);
+    os._exit(0)
 
 path1,path2 = pars_config.get_path_config()
 dist = pars_config.read_config(path1)
@@ -62,7 +62,8 @@ elif value == 2:
     photo_url = api.getByidAll(list_photo_id,group_id,True,dist['access_token'])
     api.downloadPhotos(photo_url)
 elif value == 3:
-    dist_audio = api.getAudioList(dist['user_id'],dist['access_token'],False,3)
+    count = int(input("How many songs to load ? "))
+    dist_audio = api.getAudioList(dist['user_id'],dist['access_token'],False,count)
     audio_id = api.print_list(dist_audio)
     audio_url = api.get_Audio_Url(dist['user_id'],dist['access_token'],audio_id)
     api.downloadAudio(audio_url)

@@ -30,14 +30,15 @@ def downloadWget(url,save_path):
     else:
         print("Fail")
 def errors(answer):
-    err = get_value_tags(answer,"erroe_code")
+
+    err = get_value_tags(answer,"error_code")
     err_msg = get_value_tags(answer,"error_msg")
 
     for i in range(0,len(err)):
         print "Error ###",err[i]," : ",err_msg[i]," ###"
 
     if len(err) != 0:
-        os._exit(0);
+        os._exit(0)
 
 def print_list(dist):
     while 1>0:
@@ -260,7 +261,7 @@ def get_Audio_Url(owner_id,access_token,audio_id):
     answer = page.read()
 
     errors(answer)
-    print answer
+
     url = get_value_tags(answer,"url")
     title = get_value_tags(answer,"title")
     artist = get_value_tags(answer,"artist")
@@ -293,7 +294,7 @@ def downloadAudio(audio_url):
     answer = raw_input(warring)
     if answer.lower() == "n":
         print "Goodbye!"
-        os._exit(0);
+        os._exit(0)
 
     for elem in audio_url:
         st_e = elem[2].index("?")
@@ -311,6 +312,7 @@ def downloadAudio(audio_url):
             print filename
             try:
                 os.rename(save_path+"/"+filename, save_path+"/"+elem[0]+elem[1])
+                print "Is renamed: "+save_path+"/"+elem[0]+elem[1]
             except:
                 print "You can not rename a file"
 
