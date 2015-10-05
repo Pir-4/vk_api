@@ -64,6 +64,6 @@ elif value == 2:
 elif value == 3:
     count = int(input("How many songs to load ? "))
     dist_audio = api.getAudioList(dist['user_id'],dist['access_token'],False,count)
-    audio_id = api.print_list(dist_audio)
+    audio_id = api.print_list_audio(dist_audio)
     audio_url = api.get_Audio_Url(dist['user_id'],dist['access_token'],audio_id)
     api.downloadAudio(audio_url)

@@ -41,6 +41,7 @@ def errors(answer):
         os._exit(0)
 
 def print_list(dist):
+    print "0 : exit"
     while 1>0:
         i = 1
         for elem in dist:
@@ -53,7 +54,6 @@ def print_list(dist):
         elif id ==0:
             print "Goodbye!!!"
             os._exit(0)
-            return 0
 
 def get_value_tags(answer,tag):
     arr_tag = []
@@ -254,7 +254,15 @@ def getAudioList(owner_id,access_token,user_group,count):
 
 def get_Audio_Url(owner_id,access_token,audio_id):
     url = "https://api.vk.com/method/audio.getById.xml?"
-    url += "audios="+str(owner_id)+"_"+str(audio_id)
+    st =""
+    if type(audio_id) == list:
+        for elem in audio_id:
+            st += str(owner_id)+"_"+str(elem)
+            st +=","
+        st = st[:len(st)-1]
+    else:
+        st = str(owner_id)+"_"+str(audio_id)
+    url += "audios="+st
     url += "&access_token="+access_token
 
     page = urllib2.urlopen(url)
@@ -316,3 +324,27 @@ def downloadAudio(audio_url):
             except:
                 print "You can not rename a file"
 
+def print_list_audio(dist):
+    print "-1: select multiple songs by numbers"
+    print "0 : exit"
+    while 1>0:
+        i = 1
+        for elem in dist:
+            str = elem[1]
+            print i,":",str
+            i += 1
+        id = input(":")
+        if id < 0:
+            id_s = input("start number: ")
+            id_e = input("end number: ")
+            if id_s < id_e and id_s < i and id_s > 0 and id_e < i and id_e > 0:
+                di = []
+                for f in range(id_s,id_e+1):
+                    di.append(dist[f-1][0])
+                return di
+
+        if id < i and id > 0:
+            return dist[id-1][0]
+        elif id ==0:
+            print "Goodbye!!!"
+            os._exit(0)
